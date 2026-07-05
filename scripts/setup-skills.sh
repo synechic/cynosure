@@ -37,3 +37,7 @@ add_skills wshobson/agents \
 # FullStack guardian and security skills.
 add_skills jeffallan/claude-skills \
     security-reviewer
+
+# GitHub Copilot skills.
+add_skills github/awesome-copilot \
+    conventional-commit

@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Record Session Model",
+  "description": "At the start of each turn, record the AI model currently in use into the local session ledger so commit attribution can list every model that contributed.",
+  "version": "1",
+  "when": {
+    "type": "promptSubmit"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A new turn is starting. Your ONLY job right now is to record which AI model you are running as, for later commit attribution. Do NOT address the user's request, do NOT read or edit any other files, and produce no user-facing output beyond a one-line confirmation.\n\nSteps:\n1. Determine your actual model name and version (report the real model you are running as; never hardcode, assume, or invent a version — if genuinely unsure of the exact version, use the closest identifier you can attest to).\n2. Ensure the directory `.kiro/session/` exists.\n3. Compose a JSON object on a single line: {\"ts\":\"<current UTC time in ISO 8601, e.g. 2026-07-05T10:30:00Z>\",\"agent\":\"Kiro\",\"model\":\"<your real model name and version>\",\"event\":\"promptSubmit\"}\n4. Append that exact line (append-only, never rewrite existing lines) to BOTH of these files, creating them if missing:\n   - `.kiro/session/model-usage.jsonl` (permanent cumulative usage log; never cleared)\n   - `.kiro/session/pending-attribution.jsonl` (rolling log consumed and cleared by the commit hook)\n5. Stop. Do not perform any further work this turn."
+  }
+}

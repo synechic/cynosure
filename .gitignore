@@ -395,3 +395,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Cynosure / Kiro local session state
+#   Ephemeral per-session model-usage ledger used for commit attribution.
+#   Local audit data; not part of the project source.
+.kiro/session/
